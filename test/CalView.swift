@@ -51,78 +51,15 @@ struct CalView: View {
 var body: some View {
     ZStack
     {
-        VStack(alignment: .center, spacing: 5)
-        {
-            // Title
-            
-            Text("Calorie Counter")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                
-                
-            
-            // Height and Weight HStack
-            HStack
-            {
-                
-                    // Height picker
-                    Text("Height:")
-                        .fontWeight(.bold)
-                        Picker("Choose a height", selection: $selectedName) {
-                            ForEach(heights, id: \.self) { height in
-                                Text(height)
-                                }
-                            }
-                        .pickerStyle(.menu)
-                
-                // Weight textfield
-                Text("Age:")
-                    .fontWeight(.bold)
-                TextField("", value: $age, formatter: numberFormatter)
-                    .background(Color(.systemFill))
-                    .cornerRadius(10)
-                    .shadow(color: .gray, radius: 10)
-                    .frame(width: 50, height: 10, alignment: .center)
-                    .multilineTextAlignment(.center)
-
-                        
-            }// Weight and Height HStack end
-            
-            
+        // Title
+        Text("Calorie Calculator")
+            .font(.largeTitle)
+            .fontWeight(.bold)
+            .position(x: 200, y: 10)
         
-            // Age and Gender HStack
-            HStack
-            {
-                    // Gender picker
-                        Text("Gender:")
-                            .fontWeight(.bold)
-                            Picker("Choose a Gender", selection: $selectedGender) {
-                                ForEach(genders, id: \.self) { gender in
-                                    Text(gender)
-                                }
-                            }
-                            .pickerStyle(.menu)
-                        
-                    // Age textfield
-                    Text("Weight:")
-                        .fontWeight(.bold)
-                    TextField("", value: $weight, formatter: numberFormatter)
-                        .background(Color(.systemFill))
-                        .cornerRadius(10)
-                        .shadow(color: .gray, radius: 10)
-                        .frame(width: 50, height: 10, alignment: .center)
-                        .multilineTextAlignment(.center)
-            }//Age and Gender HStack end
-            Spacer()
-            
-
-
-                
-        }
-        .frame(width: 390, height: 200, alignment: .center)
-        .position(x: 200, y: 200)// VStack
         
-        Spacer()
+        
+
         
         
         VStack
@@ -146,6 +83,109 @@ var body: some View {
             }
             
             
+        
+            
+
+            
+        }
+        .frame(width: 380, height: 300, alignment: .center)
+        .position(x: 200, y: 250)
+        
+        VStack(alignment: .center, spacing: 5)
+        {
+            
+            
+            
+                
+            // Age and Height
+            HStack{
+                
+            // Height
+            HStack
+            {
+                
+                    // Height picker
+                    Text("Height:")
+                        .fontWeight(.bold)
+                        .padding(.all)
+                        Picker("Choose a height", selection: $selectedName) {
+                            ForEach(heights, id: \.self) { height in
+                                Text(height)
+                                }
+                            }
+                        .pickerStyle(.menu)
+                        .padding(.all)
+
+                        
+            }// Height end
+            .frame(width: 185, height: 50)
+            .overlay(RoundedRectangle(cornerRadius: 15) .stroke(lineWidth: 2))
+            
+            // Age
+            HStack
+            {
+                // Age Textfield
+                Text("Age:")
+                    .fontWeight(.bold)
+                    .padding(.all)
+                TextField("", value: $age, formatter: numberFormatter)
+                    .background(Color(.systemFill))
+                    .cornerRadius(10)
+                    .shadow(color: .gray, radius: 10)
+                    .frame(width: 50, height: 10, alignment: .center)
+                    .multilineTextAlignment(.center)
+                    .padding(.all)
+            }
+            .frame(width: 185, height: 50)
+            .overlay(RoundedRectangle(cornerRadius: 15) .stroke(lineWidth: 2))
+            
+            
+            }// End Height and Age
+            
+            HStack{
+            
+            // Gender Picker HStack
+            HStack
+            {
+                    // Gender picker
+                        Text("Gender:")
+                            .fontWeight(.bold)
+                            .padding(.all)
+                            Picker("Choose a Gender", selection: $selectedGender) {
+                                ForEach(genders, id: \.self) { gender in
+                                    Text(gender)
+                                }
+                            }
+                            .pickerStyle(.menu)
+                            .padding(.all, 20.0)
+                        
+                    
+            }// Gender ends
+            .frame(width: 185, height: 50)
+            .overlay(RoundedRectangle(cornerRadius: 15) .stroke(lineWidth: 2))
+            
+            // Weight HStack
+            HStack
+            {
+                // Weight Textfield
+                Text("Weight:")
+                    .fontWeight(.bold)
+                    .frame(width: 70, height: 20)
+
+                    
+                
+                TextField("", value: $weight, formatter: numberFormatter)
+                    .background(Color(.systemFill))
+                    .cornerRadius(10)
+                    .shadow(color: .gray, radius: 10)
+                    .frame(width: 50, height: 10, alignment: .center)
+                    .multilineTextAlignment(.center)
+                    .padding(.all)
+            }
+            .frame(width: 185, height: 50)
+            .overlay(RoundedRectangle(cornerRadius: 15) .stroke(lineWidth: 2))
+            
+            }
             Button("Calculate") {
                 switch selectedName  {
                     
@@ -194,11 +234,15 @@ var body: some View {
             }
             .buttonStyle(.borderedProminent)
             .controlSize(.large)
+            .position(x: 195, y: 40)
+            
             
 
-            
+
+                
         }
-        .frame(width: 380, height: 300, alignment: .center)
+        .frame(width: 390, height: 200, alignment: .center)
+        .position(x: 200, y: 600)// VStack
         
         
         
